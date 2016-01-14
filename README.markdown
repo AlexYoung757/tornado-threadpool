@@ -13,7 +13,7 @@ Tornado Thread-Pool
 * thread_pool做了相当于celery那种任务推送,由线程组去消费, 而没有做到把当前用户的操作同步化,不能合理的拿到结果.
 
 -----
-#### 提供了一个tornado thread_pool的实例，可以方便的通过该实例测试线程池.
+##### example.py 是我写的一个tornado thread_pool的使用实例，可以方便测试线程池的功能.
 
 -----
 
