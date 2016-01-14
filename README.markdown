@@ -3,14 +3,14 @@ Tornado Thread-Pool
 
 ### 说明:
 
-`我在这个版本已经修复,给作者发了pull requests`
 * 以前的代码在Blocking处理阶段是有问题，首先不需要判断thread_locals.thread_pool是否存在，另外在异常处理阶段有出BUG.  
+#####我在这个版本已经修复,给作者发了`pull requests`
 
-`正在写`
 * ThreadPool不是预先Prefork的，是根据队列的大小来增加减少. 这样带来的问题是不断的new thread,带来不必要的系统开销.
+#####正在写,默认给他30个线程池
 
-`正在写,在保留任务异步化的基础上，加入同步非堵塞逻辑`
 * thread_pool做了相当于celery那种任务推送,由线程组去消费, 而没有做到把当前用户的操作同步化,不能合理的拿到结果.
+#####正在写,在保留任务异步化的基础上，加入同步非堵塞逻辑
 
 -----
 ##### example.py 是我写的一个tornado thread_pool的使用实例，可以方便测试线程池的功能.
