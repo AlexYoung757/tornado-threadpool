@@ -95,14 +95,5 @@ def blocking_warning(fn):
 def blocking(fn):
     @wraps(fn)
     def res(*args, **kwargs):
-        while 1:
-            try:
-                if thread_locals.thread_pool:
-                    break
-            except AttributeError,e:
-                pass
-            blocking_warning(fn)
-            break
         return fn(*args, **kwargs)
-
     return res
