@@ -60,7 +60,6 @@ def flag_ioloop():
 get_ioloop().add_callback(flag_ioloop)
 
 def in_ioloop(fn):
-
     @wraps(fn)
     def res(*args, **kwargs):
         try:
@@ -75,7 +74,6 @@ def in_ioloop(fn):
     return res
 
 def in_thread_pool(fn):
-
     @wraps(fn)
     def res(*args, **kwargs):
         try:
@@ -92,18 +90,16 @@ def in_thread_pool(fn):
 def blocking_warning(fn):
     warning_string = 'Blocking call to %s not in thread pool' % fn.__name__
     warnings.warn(warning_string, RuntimeWarning)
-    traceback.print_last()
+    traceback.print_exc()
 
 def blocking(fn):
-
-
     @wraps(fn)
     def res(*args, **kwargs):
         while 1:
             try:
                 if thread_locals.thread_pool:
                     break
-            except AttributeError:
+            except AttributeError,e:
                 pass
             blocking_warning(fn)
             break
